@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.open.spi</groupId>
+    <artifactId>root</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spi</name>
+    <packaging>pom</packaging>
+    <description>spring web spi</description>
+
+    <modules>
+        <module>factory</module>
+        <module>proxy</module>
+        <module>common</module>
+        <module>proxy_example</module>
+        <module>factory_example</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.version>2.2.3.RELEASE</spring.boot.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <fastjson.version>1.2.62</fastjson.version>
+        <httpclient.version>4.5.2</httpclient.version>
+        <httpasyncclient.version>4.1.4</httpasyncclient.version>
+        <kryo.version>4.0.2</kryo.version>
+        <project.version>0.0.1-SNAPSHOT</project.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
+        <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-site-plugin.version>3.8.2</maven-site-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpasyncclient</artifactId>
+                <version>${httpasyncclient.version}</version>
+            </dependency>
+
+            <!-- Apache HTTP 多媒体处理客户端 -->
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.open.spi</groupId>
+                <artifactId>proxy</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.esotericsoftware</groupId>
+                <artifactId>kryo-shaded</artifactId>
+                <version>${kryo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.open.spi</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.open.spi</groupId>
+                <artifactId>proxy</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.open.spi</groupId>
+                <artifactId>factory</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.open.spi</groupId>
+                <artifactId>proxy_example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.open.spi</groupId>
+                <artifactId>factory_example</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>${maven-compiler-plugin.version}</version>
+
+            </plugin>
+            <plugin>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>${maven-help-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

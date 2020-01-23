@@ -1,0 +1,10 @@
+proxy:
+  config:
+    likanghua:
+      baseUrl: http://localhost:8080/
+      readTimeout: 4000
+      connectTimeout: 4000
+      connectionRequestTimeout: 4000
+      maxTotal: 30
+server:
+  port: 8081
