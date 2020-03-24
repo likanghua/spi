@@ -1,20 +1,11 @@
 package com.open.spi.proxy;
 
 import com.open.spi.proxy.annotation.SpiProxy;
-
-import java.io.IOException;
-import java.lang.reflect.Proxy;
-import java.time.Duration;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.http.HttpClientConnection;
@@ -27,6 +18,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpProcessor;
 import org.apache.http.protocol.HttpRequestExecutor;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -50,6 +42,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.lang.reflect.Proxy;
+import java.time.Duration;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_SINGLETON;
 
@@ -104,8 +102,11 @@ public class ProxyAutoConfiguration {
     public BeanPostProcessor beanPostProcessor(ApplicationContext applicationContext, ProxyProperties proxyProperties) {
         return new BeanPostProcessor() {
             @Override
-            public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+            public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
                 Class<?> targetCls = bean.getClass();
+                if (AopUtils.isAopProxy(bean)) {
+                    targetCls = AopUtils.getTargetClass(bean);
+                }
                 FieldUtils.getFieldsListWithAnnotation(targetCls, SpiProxy.class).stream().forEach(f -> {
                     SpiProxy spiProxy = f.getDeclaredAnnotation(SpiProxy.class);
                     String version = StringUtils.trimToEmpty(spiProxy.version());
