@@ -32,10 +32,6 @@
             <artifactId>common</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </dependency>
 
         <dependency>
             <artifactId>spring-boot-autoconfigure</artifactId>
