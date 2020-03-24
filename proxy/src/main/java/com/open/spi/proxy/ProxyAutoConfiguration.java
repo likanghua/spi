@@ -110,13 +110,12 @@ public class ProxyAutoConfiguration {
                 FieldUtils.getFieldsListWithAnnotation(targetCls, SpiProxy.class).stream().forEach(f -> {
                     SpiProxy spiProxy = f.getDeclaredAnnotation(SpiProxy.class);
                     String version = StringUtils.trimToEmpty(spiProxy.version());
-                    f.setAccessible(true);
                     try {
                         FieldUtils.writeField(f, bean, Proxy.newProxyInstance(
                                 this.getClass().getClassLoader(),
                                 new Class[]{f.getType()},
                                 new RemoteServiceProxy(applicationContext, proxyProperties, version)
-                        ));
+                        ), true);
                     } catch (Exception ex) {
                         log.error(ex.getMessage());
                         System.exit(Integer.MIN_VALUE);
