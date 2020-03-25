@@ -18,6 +18,11 @@
             <artifactId>factory</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.open.spi</groupId>
+            <artifactId>proxy_example</artifactId>
+        </dependency>
+
     </dependencies>
 
 
