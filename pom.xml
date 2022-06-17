@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.boot.version>2.2.3.RELEASE</spring.boot.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <fastjson.version>1.2.62</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <httpclient.version>4.5.2</httpclient.version>
         <httpasyncclient.version>4.1.4</httpasyncclient.version>
         <kryo.version>4.0.2</kryo.version>
